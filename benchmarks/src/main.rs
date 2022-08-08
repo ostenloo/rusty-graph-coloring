@@ -60,7 +60,7 @@ fn main() {
         //     }
         //     let order = &args[3]; 
         //     match order[..] { 
-        //         "SLVO" | "SODL" | "URO" | "BFSR" | "BFSS" | "BFSR" => {
+        //         "SLVO" | "SODL" | "URO" | "BFSR" | "BFSS" | "BFSL" => {
         //             if args.len() != 4 {
         //                 panic!("Wrong number of arguments found."); 
         //             }
@@ -69,12 +69,6 @@ fn main() {
         //         _ => panic!("Not a vertex ordering."),
         //     }
         // },
-        // "color" => {
-        //     if args.len() < 4{
-        //         panic!("Wrong number of arguments found."); 
-        //     }
-        //     coloringAlgorithm(); 
-        // }
         _ => panic!("Not a valid argument."), 
     }
 
@@ -118,11 +112,6 @@ pub fn generateGraph(dir : &str, graph : GraphKind)
 
 // //
 // pub fn vertexOrdering() 
-// {
-
-// }
-
-// pub fn coloringAlgorithm() 
 // {
 
 // }
