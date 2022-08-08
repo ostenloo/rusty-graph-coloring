@@ -12,12 +12,14 @@ pub struct Input{
     pub dist: Option<DistKind> 
 }
 
+#[derive(Clone)]
 pub enum GraphKind{
     complete,
     cycle, 
     random (DistKind), 
 }
 
+#[derive(Clone)]
 pub enum DistKind{
     uniform, 
     skewed, 

@@ -1,9 +1,5 @@
-use std::io;
-use std::fs;
-
-use graph_coloring::input::*; 
-use graph_coloring::graph::*; 
-use graph_coloring::ordering::*;
+use std::{io,fs}; 
+use graph_coloring::{input::*,graph::*,ordering::*}; 
 
 fn main() {
     // let contents = fs::read_to_string("file.txt").expect("Something went wrong reading the file");
@@ -13,6 +9,8 @@ fn main() {
     // ordering.displayOrder(); 
     // ordering.coloring(); 
     // graph.output("file1.txt"); 
+    // fs::create_dir("../tmp")?;
+    // Ok(()) 
     loop 
     {
         let (mut terminate, mut vertices, mut edges, mut graph, mut distribution) = 
@@ -35,7 +33,11 @@ fn main() {
         println!("Choose the number of Vertices (1-10,000):");
         io::stdin().read_line(&mut vertices).expect("failed to readline");
         let mut v : u32 = vertices.trim().parse::<u32>().unwrap();  
-        let mut e : u32 = 0; 
+        let mut e = match g{
+            1 => (v)*(v-1)/2, 
+            2 => v, 
+            _ => 0
+        }; 
         let mut d : u32 = 0; 
 
         if g == 3{

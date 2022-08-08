@@ -1,5 +1,5 @@
 [package]
-name = "graph_coloring"
+name = "graph-coloring"
 version = "0.1.0"
 edition = "2021"
 author = "https://github.com/ostenloo"

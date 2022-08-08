@@ -27,7 +27,7 @@ impl Graph{
     //.split creates string slices &str which 
     pub fn new_from_file(filename : &str) -> Graph 
     {
-        let content: Vec<String> = fs::read_to_string("tmp/".to_owned() + filename)
+        let content: Vec<String> = fs::read_to_string(filename)
         .expect("Something went wrong reading the file")
         .split("\n")
         .map(|s| s.to_string()) 
@@ -253,7 +253,7 @@ impl Graph{
     }
 
     pub fn output(&self, filename : &str) {
-        let mut file = std::fs::File::create("tmp/".to_owned() + filename).expect("create failed");
+        let mut file = std::fs::File::create(filename).expect("create failed");
         let v = self.adjacencyList.len(); 
         write!(file, "{}\n", v);
         let mut sum = v + 1; 
