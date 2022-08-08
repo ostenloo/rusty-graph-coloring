@@ -2,9 +2,11 @@
 name = "benchmarks"
 version = "0.1.0"
 edition = "2021"
+author = "https://github.com/ostenloo"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 
-graph_coloring = { path = '../graph_coloring'}
+graph-coloring = { path = '../graph-coloring'}
+time = { version = "0.3.12", features = ["macros"] }
