@@ -10,11 +10,6 @@ author = "https://github.com/ostenloo"
 
 rand = "0.8.5"
 
-[workspace]
-
-members = ["benchmarks"]
-
-
 
 
 

@@ -40,20 +40,20 @@ Benchmarks are controlled through command line arguments. The commands are
 
 | Base Command            | Command | Directory | Arg[3]   | Arg[4]  | Arg[5]  |
 |-------------------------|---------|-----------|----------|---------|---------|
-| cargo run -p benchmarks | graph   | dirname   | complete |         |         |
-| cargo run -p benchmarks | graph   | dirname   | cycle    |         |         |
-| cargo run -p benchmarks | graph   | dirname   | random   | uniform | sparse  |
-| cargo run -p benchmarks | graph   | dirname   | random   | uniform | dense   |
-| cargo run -p benchmarks | graph   | dirname   | random   | skewed  | sparse  |
-| cargo run -p benchmarks | graph   | dirname   | random   | skewed  | dense   |
-| cargo run -p benchmarks | graph   | dirname   | random   | cosine  | sparse  |
-| cargo run -p benchmarks | graph   | dirname   | random   | cosine  | dense   |
-| cargo run -p benchmarks | order   | dirname   | SLVO     |         |         |
-| cargo run -p benchmarks | order   | dirname   | SODL     |         |         |
-| cargo run -p benchmarks | order   | dirname   | URO      |         |         |
-| cargo run -p benchmarks | order   | dirname   | BFSR     |         |         |
-| cargo run -p benchmarks | order   | dirname   | BFSS     |         |         |
-| cargo run -p benchmarks | order   | dirname   | BFSL     |         |         |
+| cargo run               | graph   | dirname   | complete |         |         |
+| cargo run               | graph   | dirname   | cycle    |         |         |
+| cargo run               | graph   | dirname   | random   | uniform | sparse  |
+| cargo run               | graph   | dirname   | random   | uniform | dense   |
+| cargo run               | graph   | dirname   | random   | skewed  | sparse  |
+| cargo run               | graph   | dirname   | random   | skewed  | dense   |
+| cargo run               | graph   | dirname   | random   | cosine  | sparse  |
+| cargo run               | graph   | dirname   | random   | cosine  | dense   |
+| cargo run               | order   | dirname   | SLVO     |         |         |
+| cargo run               | order   | dirname   | SODL     |         |         |
+| cargo run               | order   | dirname   | URO      |         |         |
+| cargo run               | order   | dirname   | BFSR     |         |         |
+| cargo run               | order   | dirname   | BFSS     |         |         |
+| cargo run               | order   | dirname   | BFSL     |         |         |
 
     SLVO - Smallest Last Vertex Ordering 
     SODL - Smallest Original Degree Last 
@@ -68,15 +68,15 @@ Then you must select an existing `dirname` in the `order` command to read the fi
 
 For example, a sample command sequence might be 
 
-    cargo run -p benchmarks graph dir1 complete 
+    cargo run graph dir1 complete 
 
-    cargo run -p benchmarks order SLVO dir1 
+    cargo run order SLVO dir1 
 
 or 
 
-    cargo run -p benchmarks graph dir2 random uniform sparse
+    cargo run graph dir2 random uniform sparse
 
-    cargo run -p benchmarks order SLVO dir2 
+    cargo run order SLVO dir2 
 
 # Histograms 
 

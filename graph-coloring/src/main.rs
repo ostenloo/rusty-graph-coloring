@@ -13,8 +13,8 @@ fn main() {
     // Ok(()) 
     loop 
     {
-        let (mut terminate, mut vertices, mut edges, mut graph, mut distribution) = 
-        (String::new(), String::new(), String::new(), String::new(), String::new());
+        let (mut terminate, mut vertices, mut edges, mut graph, mut distribution, mut order) = 
+        (String::new(), String::new(), String::new(), String::new(), String::new(), String::new());
 
         println!("Welcome to the Rusty Graph Coloring Analysis Project! Press any key to continue, or 'q' to quit.");
         io::stdin().read_line(&mut terminate).expect("failed to readline");
@@ -56,9 +56,30 @@ fn main() {
 
         graph.display(); 
 
-        graph.output("file1.txt");
+        graph.output("../tmp/file1.txt");
 
-        let ordering : Ordering = Ordering::SLVO(graph); 
+        println!("Choose the type of Ordering: 
+        \n1 - Smallest Last Vertex Ordering 
+        \n2 - Smallest Original Degree Last 
+        \n3 - Uniform Random Ordering 
+        \n4 - Breadth First Search from a Random Vertice 
+        \n5 - Breadth First Search from the Smallest Vertice 
+        \n6 - Breadth First Search from the Largest Vertice");
+        io::stdin().read_line(&mut order).expect("failed to readline");
+        let mut o : u32 = order.trim().parse::<u32>().unwrap();  
+        let ordering : Ordering = match o{
+            1 => Ordering::SLVO(graph),
+            2 => Ordering::SODL(graph), 
+            3 => Ordering::URO(graph), 
+            4 => Ordering::BFSR(graph), 
+            5 => Ordering::BFSS(graph), 
+            6 => Ordering::BFSL(graph),
+            _ => panic!("Not an ordering."),  
+        };
+
+        ordering.displayOrder(); 
+
+        ordering.coloring(); 
 
     }
 

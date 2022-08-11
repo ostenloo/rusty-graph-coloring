@@ -49,20 +49,18 @@ pub fn SLVO(graph : Graph) -> Ordering{
 
     let adjacencySetList : Vec<HashSet<u32>> = create_adj_set(&AL); 
 
-    //getting all the vertices with an initial in-degree of 0
+    // //getting all the vertices with an initial in-degree of 0
     for i in IDL[0].iter(){
-        order.push(*i); 
+        order.push(*i);
+        v -= 1;  
     }
 
+    let mut flag = false; 
     loop {
         let mut IDL_ = vec![LinkedList::<u32>::new(); graph.vertices]; 
         let mut AL_  = AL.clone();  
 
-        if v == 2 
-        {
-            for i in IDL[1].iter(){
-                order.push(*i); 
-            }
+        if v == 0{
             break; 
         }
         //looping through the in degree list  
@@ -74,22 +72,30 @@ pub fn SLVO(graph : Graph) -> Ordering{
                 for k in AL[*j as usize].iter()
                 {
                     AL_[*k as usize] = remove_from_ll(*j, &AL_[*k as usize]); 
+                    if AL_[*k as usize].len() == 0{
+                        v -= 1; 
+                        order.push(*k); 
+                    }
                 }
                 AL_[*j as usize] = LinkedList::<u32>::new(); 
                 IDL_ = vec![LinkedList::<u32>::new(); graph.vertices]; 
                 for (ii, i) in AL_.iter().enumerate(){
                     IDL_[i.len()].push_back(ii.try_into().unwrap()); 
                 }
-                v -= 1; 
+                v -= 1;
+
+                println!("Removing vertex {}\n", *j); 
+
                 let g = Graph{ 
                     adjacencyList : AL_.clone(),
                     inDegreeList: IDL_.clone(), 
                     vertices : v, 
                     edges : 1, 
                 }; 
-                g.display(); 
+                g.display();
                 break;  
             }
+            break;
         }
         IDL = IDL_; 
         AL = AL_; 
@@ -360,9 +366,7 @@ pub fn coloring(&self) {
         requiredColors = cmp::max(smallestAvailableColor, requiredColors); 
         println!("Vertice: {}, Color: {}",*i,smallestAvailableColor); 
     }
-    println!("\nNeeded {} colors.",requiredColors + 1); 
-
-    println!("Graph has {} Vertices and {} Edges", self.vertices, self.edges); 
+    println!("\nNeeded {} colors to color a graph of {} Vertices and {} Edges.",requiredColors + 1, self.vertices, self.edges); 
 
     // for i in self.adjacencySetList.iter() {
     //     for j in i.iter() {
