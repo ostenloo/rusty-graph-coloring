@@ -13,6 +13,7 @@ pub struct Ordering{
     pub avgOrigDegree : f64, 
     pub origDegreeMap : HashMap<u32,u32>, 
     pub degreeWhenDeletedMap : Option<HashMap<u32,u32>>, 
+    pub terminalClique: Option<usize>, 
 }
 
 // remove from ll 
@@ -80,6 +81,7 @@ pub fn SLVO(graph : Graph) -> Ordering{
     let origDegreeMap : HashMap<u32,u32> = create_orig_degree_map(&IDL);
 
     let mut degreeWhenDeletedMap : HashMap<u32,u32> = HashMap::new(); 
+    let mut terminalClique : usize = 2; 
 
     // //getting all the vertices with an initial in-degree of 0
     for i in IDL[0].iter(){
@@ -87,8 +89,7 @@ pub fn SLVO(graph : Graph) -> Ordering{
         v -= 1;  
         degreeWhenDeletedMap.insert(*i as u32, 0); 
     }
-
-    let mut flag = false; 
+     
     loop {
         let mut IDL_ = vec![LinkedList::<u32>::new(); graph.vertices]; 
         let mut AL_  = AL.clone();  
@@ -96,9 +97,18 @@ pub fn SLVO(graph : Graph) -> Ordering{
         if v == 0{
             break; 
         }
+
+        if IDL[v as usize - 1].len() == v{
+            terminalClique = cmp::max(terminalClique, v as usize); 
+        }
+
+        println!("{}", v); 
         //looping through the in degree list  
         for i in IDL[1..].iter(){
             //looping through the vertices at each in degree 
+            if i.len() == 0{
+                continue; 
+            }
             for j in i.iter()
             {
                 order.push(*j); 
@@ -130,7 +140,7 @@ pub fn SLVO(graph : Graph) -> Ordering{
                 g.display();
                 break;  
             }
-            break;
+            break; 
         }
         IDL = IDL_; 
         AL = AL_; 
@@ -145,6 +155,7 @@ pub fn SLVO(graph : Graph) -> Ordering{
         avgOrigDegree: avgOrigDegree, 
         origDegreeMap: origDegreeMap, 
         degreeWhenDeletedMap: Some(degreeWhenDeletedMap), 
+        terminalClique: Some(terminalClique), 
     }
 }
 
@@ -170,6 +181,7 @@ pub fn SODL(graph : Graph) -> Ordering {
         avgOrigDegree: avgOrigDegree, 
         origDegreeMap: origDegreeMap,
         degreeWhenDeletedMap: None, 
+        terminalClique: None, 
     }
 }
 
@@ -192,6 +204,7 @@ pub fn URO(graph : Graph) -> Ordering{
         avgOrigDegree: avgOrigDegree, 
         origDegreeMap: origDegreeMap, 
         degreeWhenDeletedMap: None, 
+        terminalClique: None, 
     }
 }
 
@@ -255,6 +268,7 @@ pub fn BFSR(graph : Graph) -> Ordering{
         avgOrigDegree: avgOrigDegree, 
         origDegreeMap: origDegreeMap, 
         degreeWhenDeletedMap: None, 
+        terminalClique: None, 
     }
 }
 
@@ -325,7 +339,8 @@ pub fn BFSS(graph : Graph) -> Ordering{
         edges: graph.edges, 
         avgOrigDegree: avgOrigDegree, 
         origDegreeMap: origDegreeMap, 
-        degreeWhenDeletedMap: None, 
+        degreeWhenDeletedMap: None,
+        terminalClique: None,  
     }
 }
 
@@ -396,7 +411,8 @@ pub fn BFSL(graph : Graph) -> Ordering{
         edges: graph.edges, 
         avgOrigDegree: avgOrigDegree, 
         origDegreeMap: origDegreeMap,
-        degreeWhenDeletedMap: None, 
+        degreeWhenDeletedMap: None,
+        terminalClique: None,  
     }
 }
 
@@ -440,6 +456,9 @@ pub fn coloring(&self) {
     }
     println!("\nNeeded {} colors to color a graph of {} Vertices and {} Edges.",requiredColors + 1, self.vertices, self.edges); 
     println!("Average Original Degree: {}", self.avgOrigDegree); 
+    if !self.terminalClique.is_none(){
+        println!("Terminal Clique: {}", self.terminalClique.unwrap());
+    }
 }
 
 pub fn displayOrder(&self) {
