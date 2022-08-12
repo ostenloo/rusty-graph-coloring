@@ -2,9 +2,15 @@
 
 # Running without Installing Rust
 
-Rust offers a way to run the program without compiling it, which is done through an executable. 
+Rust offers a way to run programs without installing Rust. This is known as ahead-of-time compiling. 
 
+To run: 
 
+    git clone https://github.com/ostenloo/rusty-graph-coloring.git 
+    
+    ./exec/graph-coloring
+    
+    ./exec/benchmarks
 
 # Installing 
 
@@ -77,9 +83,6 @@ or
     cargo run graph dir2 random uniform sparse
 
     cargo run order SLVO dir2 
-
-# Histograms 
-
 
 
 
