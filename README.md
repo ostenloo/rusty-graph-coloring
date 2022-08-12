@@ -28,14 +28,6 @@ without Rust installed:
 
 A CLI will appear where you can control the settings for the Graphs you create. 
 
-# Tests 
-
-To run the unit tests (inside graph-coloring directory)
-    
-    cargo test
-
-These are a few tests to make sure the program works as expected. 
-
 # Benchmarks
 
 Benchmarks are controlled through command line arguments. The commands are 
