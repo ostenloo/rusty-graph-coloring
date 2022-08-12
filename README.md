@@ -24,13 +24,15 @@ To run the main graph-coloring program with Rust installed:
     
 without Rust installed: 
 
+    cd graph-coloring
+
     ../exec/graph-coloring
 
 A CLI will appear where you can control the settings for the Graphs you create. 
 
 # Benchmarks
 
-Benchmarks are controlled through command line arguments. The commands are 
+Running Benchmarks will require Rust to be installed (I was having issues and was too lazy to figure out a way to make it work, though it is possible). Benchmarks are controlled through command line arguments. The commands are 
 
 | Base Command            | Command | Directory | Arg[3]   | Arg[4]  | Arg[5]  |
 |-------------------------|---------|-----------|----------|---------|---------|
@@ -60,7 +62,9 @@ You must run a `graph` command before running an `order` command. Running a `gra
 
 Then you must select an existing `dirname` in the `order` command to read the files from. This will benchmark both the order specified in `Arg[3]` and the coloring algorithm. 
 
-For example, a sample command sequence might be (inside benchmarks directory)
+For example, a sample command sequence might be
+
+    cd benchmarks
 
     cargo run graph dir1 complete
     
