@@ -69,3 +69,9 @@ For example, a sample command sequence might be
     cargo run graph dir1 complete
     
     cargo run order SLVO dir1 
+
+## Generated Benchmarks 
+
+These numbers were generated using Benchmarks. 
+
+https://docs.google.com/spreadsheets/d/e/2PACX-1vRmm8M1quJzVrzNhRHXlO_S1JYL7cazmLZeD0PBCWBaFPlJbFOlyYV4-Rgk7WLwhF2JGrBKnF6IpOaN/pubhtml
