@@ -2,15 +2,6 @@ use std::{io,fs};
 use graph_coloring::{input::*,graph::*,ordering::*}; 
 
 fn main() {
-    // let contents = fs::read_to_string("file.txt").expect("Something went wrong reading the file");
-    // let graph : Graph = Graph::new_from_file("file.txt");
-    // graph.display();  
-    // let ordering : Ordering = Ordering::BFSS(graph); 
-    // ordering.displayOrder(); 
-    // ordering.coloring(); 
-    // graph.output("file1.txt"); 
-    // fs::create_dir("../tmp")?;
-    // Ok(()) 
     loop 
     {
         let (mut terminate, mut vertices, mut edges, mut graph, mut distribution, mut order) = 
@@ -82,10 +73,4 @@ fn main() {
         ordering.coloring(); 
 
     }
-
-    // for i in 1..100{
-    //     let input : Input = Input::new(*i*100,0,1,0); 
-    //     let graph : Graph = Graph::new(input); 
-    // }
-    
 }
