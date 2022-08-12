@@ -65,10 +65,6 @@ fn main() {
 
 }
 
-//TO DO -- think about adding an OrderKind? Or just calling the function... 
-
-//move the args.len() outside 
-
 //runtime complexity for various sizes 
 pub fn generateGraph(dir : &str, graph : GraphKind)
 {
@@ -132,14 +128,16 @@ pub fn generateRandom(dir : &str, dist : DistKind, density : &str)
 // //
 pub fn vertexOrdering(dir : &str, order : &str ) 
 {
-    let sizes : Vec<u32> = vec![100,200,300,400,500,600,700,800,900,1000]; 
-    let mut runtime : Vec<u128> = Vec::new(); 
+    let mut orderingRuntime : Vec<u128> = Vec::new(); 
+    let mut coloringRuntime : Vec<u128> = Vec::new(); 
     let paths = fs::read_dir("../tmp/".to_owned() + dir).unwrap();
+    let mut orderingRuntimeFile = std::fs::File::create("../tmp/".to_owned() + dir + "/" + order + "runtimeFile").expect("create failed");
+    let mut coloringRuntimeFile = std::fs::File::create("../tmp/".to_owned() + dir + "/" + order + "coloringRuntimeFile").expect("create failed");
     for path in paths {
         let filepath : &str = &format!("{}", path.unwrap().path().display()); 
         if &filepath[dir.len() + 8..dir.len() + 12] == "file"{
             let graph : Graph = Graph::new_from_file(filepath); 
-            let start = Instant::now(); 
+            let mut start = Instant::now(); 
             let ordering : Ordering = match order{
                 "SLVO" => Ordering::SLVO(graph),
                 "SODL" => Ordering::SODL(graph),
@@ -149,9 +147,14 @@ pub fn vertexOrdering(dir : &str, order : &str )
                 "BFSL" => Ordering::BFSL(graph),
                 _ => panic!("Not an ordering."), 
             };
-            let end = start.elapsed();
-            println!("{},{}", &filepath[dir.len()+12..], end.as_nanos()); 
-            runtime.push(end.as_nanos()); 
+            let mut end = start.elapsed();
+            orderingRuntime.push(end.as_nanos()); 
+            write!(orderingRuntimeFile, "{},{}\n", &filepath[dir.len()+12..], end.as_nanos()); 
+            start = Instant::now(); 
+            ordering.coloring(); 
+            end = start.elapsed(); 
+            coloringRuntime.push(end.as_nanos()); 
+            write!(coloringRuntimeFile, "{},{}\n", &filepath[dir.len()+12..], end.as_nanos()); 
         }
     }
 }

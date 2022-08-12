@@ -426,7 +426,7 @@ pub fn coloring(&self) {
 
     let mut requiredColors : u32 = 0; 
 
-    println!("Coloring: \n"); 
+    // println!("Coloring: \n"); 
 
     for i in self.order.iter(){
         let mut smallestAvailableColor : u32 = 0; 
@@ -446,6 +446,8 @@ pub fn coloring(&self) {
         }
         requiredColors = cmp::max(smallestAvailableColor, requiredColors); 
         write!(file, "{},{}\n", *i,smallestAvailableColor); 
+
+        // comment out when you want to run benchmarks
         print!("Vertice: {}, Color: {} Original Degree: {}",*i,smallestAvailableColor,self.origDegreeMap.get(i).unwrap()); 
         if !self.degreeWhenDeletedMap.is_none(){
             println!(" Degree When Deleted: {}", self.degreeWhenDeletedMap.as_ref().unwrap().get(i).unwrap()); 
