@@ -70,15 +70,16 @@ Then you must select an existing `dirname` in the `order` command to read the fi
 
 For example, a sample command sequence might be (inside benchmarks directory)
 
-    cargo run graph dir1 complete //./exec/benchmarks graph dir1 complete
-
-    cargo run order SLVO dir1 //./exec/benchmarks order SLVO dir1
-
-or 
-
-    cargo run graph dir2 random uniform sparse //./exec/benchmarks graph dir2 random uniform sparse
+    cargo run graph dir1 complete
     
-    cargo run order SLVO dir2 //./exec/benchmarks order SLVO dir2
+    cargo run order SLVO dir1 
+    
+without Rust installed: 
+    
+    ./exec/benchmarks graph dir1 complete
+    
+    ./exec/benchmarks order SLVO dir1
+    
     
 
 
