@@ -1,20 +1,10 @@
 # rusty-graph-coloring
 
-# Running without Installing Rust
+# Setup
 
-Rust offers a way to run programs without installing Rust. This is known as ahead-of-time compiling. 
+I've included the executables for the program so it's not required to install Rust. The commands for running without having Rust installed will be listed below. 
 
-To run: 
-
-    git clone https://github.com/ostenloo/rusty-graph-coloring.git 
-    
-    ./exec/graph-coloring
-    
-    ./exec/benchmarks
-
-# Installing 
-
-Follow instructions to [install Rust.](https://doc.rust-lang.org/book/ch01-01-installation.html)  
+Otherwise, follow instructions to [install Rust.](https://doc.rust-lang.org/book/ch01-01-installation.html)  
 
 Next run: 
 
@@ -26,17 +16,23 @@ Next run:
 
 # Running 
 
-To run the main graph-coloring program, enter 
+To run the main graph-coloring program with Rust installed: 
 
-    cargo run -p graph-coloring
+    cd graph-coloring
+    
+    cargo run
+    
+without Rust installed: 
 
-A CLI will appear where you can control the Graphs you create. 
+    ./exec/graph-coloring
+
+A CLI will appear where you can control the settings for the Graphs you create. 
 
 # Tests 
 
-To run the unit tests, enter 
-
-    cargo run -p graph-coloring tests 
+To run the unit tests (inside graph-coloring directory)
+    
+    cargo run tests 
 
 These are a few tests to make sure the program works as expected. 
 
@@ -72,17 +68,18 @@ You must run a `graph` command before running an `order` command. Running a `gra
 
 Then you must select an existing `dirname` in the `order` command to read the files from. This will benchmark both the order specified in `Arg[3]` and the coloring algorithm. 
 
-For example, a sample command sequence might be 
+For example, a sample command sequence might be (inside benchmarks directory)
 
-    cargo run graph dir1 complete 
+    cargo run graph dir1 complete //./exec/benchmarks graph dir1 complete
 
-    cargo run order SLVO dir1 
+    cargo run order SLVO dir1 //./exec/benchmarks order SLVO dir1
 
 or 
 
-    cargo run graph dir2 random uniform sparse
-
-    cargo run order SLVO dir2 
+    cargo run graph dir2 random uniform sparse //./exec/benchmarks graph dir2 random uniform sparse
+    
+    cargo run order SLVO dir2 //./exec/benchmarks order SLVO dir2
+    
 
 
 
