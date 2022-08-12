@@ -32,7 +32,7 @@ A CLI will appear where you can control the settings for the Graphs you create.
 
 To run the unit tests (inside graph-coloring directory)
     
-    cargo run tests 
+    cargo test
 
 These are a few tests to make sure the program works as expected. 
 
@@ -79,8 +79,3 @@ without Rust installed (inside rusty-graph-coloring directory):
     ./exec/benchmarks graph dir1 complete
     
     ./exec/benchmarks order SLVO dir1
-    
-    
-
-
-
