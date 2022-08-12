@@ -24,13 +24,15 @@ To run the main graph-coloring program with Rust installed:
     
 without Rust installed: 
 
+    cd graph-coloring
+
     ../exec/graph-coloring
 
 A CLI will appear where you can control the settings for the Graphs you create. 
 
 # Benchmarks
 
-Benchmarks are controlled through command line arguments. The commands are 
+Running Benchmarks will require Rust to be installed (I was having issues and was too lazy to figure out a way to make it work, though it is possible). Benchmarks are controlled through command line arguments. The commands are 
 
 | Base Command            | Command | Directory | Arg[3]   | Arg[4]  | Arg[5]  |
 |-------------------------|---------|-----------|----------|---------|---------|
