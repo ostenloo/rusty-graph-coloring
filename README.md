@@ -74,7 +74,7 @@ For example, a sample command sequence might be (inside benchmarks directory)
     
     cargo run order SLVO dir1 
     
-without Rust installed: 
+without Rust installed (inside rusty-graph-coloring directory): 
     
     ./exec/benchmarks graph dir1 complete
     
