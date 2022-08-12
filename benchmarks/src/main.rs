@@ -72,7 +72,7 @@ fn main() {
 //runtime complexity for various sizes 
 pub fn generateGraph(dir : &str, graph : GraphKind)
 {
-    let sizes : Vec<u32> = vec![10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200];//, 300, 400, 500, 600, 700, 800, 900, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]; 
+    let sizes : Vec<u32> = vec![100,200,300,400,500,600,700,800,900,1000]; 
     let mut runtime : Vec<u128> = Vec::new(); 
     fs::create_dir("../tmp/".to_owned() + dir).expect("create failed"); 
     for v in sizes.iter(){
@@ -102,7 +102,7 @@ pub fn generateGraph(dir : &str, graph : GraphKind)
 //runtime complexity for different sizes of random graphs with various densities 
 pub fn generateRandom(dir : &str, dist : DistKind, density : &str)  
 {
-    let sizes : Vec<u32> = vec![10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200]; 
+    let sizes : Vec<u32> = vec![100,200,300,400,500,600,700,800,900,1000]; 
     let mut runtime : Vec<u128> = Vec::new(); 
     fs::create_dir("../tmp/".to_owned() + dir).expect("create failed");
     for v in sizes.iter(){
@@ -132,7 +132,7 @@ pub fn generateRandom(dir : &str, dist : DistKind, density : &str)
 // //
 pub fn vertexOrdering(dir : &str, order : &str ) 
 {
-    let sizes : Vec<u32> = vec![10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200]; 
+    let sizes : Vec<u32> = vec![100,200,300,400,500,600,700,800,900,1000]; 
     let mut runtime : Vec<u128> = Vec::new(); 
     let paths = fs::read_dir("../tmp/".to_owned() + dir).unwrap();
     for path in paths {
