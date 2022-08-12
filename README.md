@@ -8,7 +8,7 @@ Rust offers a way to run the program without compiling it, which is done through
 
 # Installing 
 
-Follow instructions to [install Rust.](https://www.rust-lang.org/tools/install)  
+Follow instructions to [install Rust.](https://doc.rust-lang.org/book/ch01-01-installation.html)  
 
 Next run: 
 
