@@ -2,7 +2,7 @@
 
 # Setup
 
-I've included an executable to run the main program graph-coloring, so it's possible to run without Rust. 
+I've included an executable to run the main program graph-coloring, so it's possible to run without Rust installed. 
 
 Otherwise, follow instructions to [install Rust.](https://doc.rust-lang.org/book/ch01-01-installation.html)  
 
@@ -65,5 +65,3 @@ For example, a sample command sequence might be (inside benchmarks directory)
     cargo run graph dir1 complete
     
     cargo run order SLVO dir1 
-
-I was having issues with getting the executable to work for the Benchmarks, so I removed it. 
