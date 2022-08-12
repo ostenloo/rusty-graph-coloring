@@ -2,7 +2,7 @@
 
 # Setup
 
-I've included the executables for the program so it's not required to install Rust. The commands for running without having Rust installed will be listed below. 
+I've included an executable to run the main program graph-coloring, so it's possible to run without Rust. 
 
 Otherwise, follow instructions to [install Rust.](https://doc.rust-lang.org/book/ch01-01-installation.html)  
 
@@ -24,7 +24,7 @@ To run the main graph-coloring program with Rust installed:
     
 without Rust installed: 
 
-    ./exec/graph-coloring
+    ../exec/graph-coloring
 
 A CLI will appear where you can control the settings for the Graphs you create. 
 
@@ -65,9 +65,5 @@ For example, a sample command sequence might be (inside benchmarks directory)
     cargo run graph dir1 complete
     
     cargo run order SLVO dir1 
-    
-without Rust installed (inside rusty-graph-coloring directory): 
-    
-    ./exec/benchmarks graph dir1 complete
-    
-    ./exec/benchmarks order SLVO dir1
+
+I was having issues with getting the executable to work for the Benchmarks, so I removed it. 
