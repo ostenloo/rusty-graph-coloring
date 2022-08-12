@@ -62,7 +62,9 @@ You must run a `graph` command before running an `order` command. Running a `gra
 
 Then you must select an existing `dirname` in the `order` command to read the files from. This will benchmark both the order specified in `Arg[3]` and the coloring algorithm. 
 
-For example, a sample command sequence might be (inside benchmarks directory)
+For example, a sample command sequence might be
+
+    cd benchmarks
 
     cargo run graph dir1 complete
     
