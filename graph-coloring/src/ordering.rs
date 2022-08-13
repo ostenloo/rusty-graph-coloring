@@ -10,7 +10,6 @@ pub struct Ordering{
     pub adjacencySetList: Vec<HashSet<u32>>, 
     pub vertices : usize, 
     pub edges : usize,
-    pub avgOrigDegree : f64, 
     pub origDegreeMap : HashMap<u32,u32>, 
     pub degreeWhenDeletedMap : Option<HashMap<u32,u32>>, 
     pub terminalClique: Option<usize>, 
@@ -42,19 +41,6 @@ pub fn create_adj_set(AL : &Vec<LinkedList<u32>>) -> Vec<HashSet<u32>> {
     adjacencySetList
 }
 
-pub fn get_avg_orig_degree(IDL : &Vec<LinkedList<u32>>) -> f64 {
-    let mut sum : f64 = 0.0; 
-    let mut num : f64 = 0.0; 
-    for (ii,i) in IDL.iter().enumerate(){
-        for j in i.iter(){
-            num += 1.0; 
-            sum += ii as f64; 
-        }
-    }
-
-    sum / num 
-}
-
 pub fn create_orig_degree_map(IDL : &Vec<LinkedList<u32>>) -> HashMap<u32,u32> { 
     let mut origDegreeMap : HashMap<u32,u32> = HashMap::new(); 
     for (ii, i) in IDL.iter().enumerate(){
@@ -76,8 +62,7 @@ pub fn SLVO(graph : Graph) -> Ordering{
     let mut AL = graph.adjacencyList; 
     let mut order : Vec<u32> = Vec::new(); 
 
-    let adjacencySetList : Vec<HashSet<u32>> = create_adj_set(&AL);
-    let avgOrigDegree : f64 = get_avg_orig_degree(&IDL);  
+    let adjacencySetList : Vec<HashSet<u32>> = create_adj_set(&AL); 
     let origDegreeMap : HashMap<u32,u32> = create_orig_degree_map(&IDL);
 
     let mut degreeWhenDeletedMap : HashMap<u32,u32> = HashMap::new(); 
@@ -102,7 +87,6 @@ pub fn SLVO(graph : Graph) -> Ordering{
             terminalClique = cmp::max(terminalClique, v as usize); 
         }
 
-        println!("{}", v); 
         //looping through the in degree list  
         for i in IDL[1..].iter(){
             //looping through the vertices at each in degree 
@@ -152,7 +136,6 @@ pub fn SLVO(graph : Graph) -> Ordering{
         adjacencySetList: adjacencySetList,
         vertices: graph.vertices, 
         edges: graph.edges, 
-        avgOrigDegree: avgOrigDegree, 
         origDegreeMap: origDegreeMap, 
         degreeWhenDeletedMap: Some(degreeWhenDeletedMap), 
         terminalClique: Some(terminalClique), 
@@ -163,7 +146,6 @@ pub fn SLVO(graph : Graph) -> Ordering{
 pub fn SODL(graph : Graph) -> Ordering {
     let mut order : Vec<u32> = Vec::new(); 
     let adjacencySetList : Vec<HashSet<u32>> = create_adj_set(&graph.adjacencyList); 
-    let avgOrigDegree : f64 = get_avg_orig_degree(&graph.inDegreeList);
     let origDegreeMap : HashMap<u32,u32> = create_orig_degree_map(&graph.inDegreeList); 
 
     for i in graph.inDegreeList.iter(){
@@ -178,7 +160,6 @@ pub fn SODL(graph : Graph) -> Ordering {
         adjacencySetList: adjacencySetList,
         vertices: graph.vertices, 
         edges: graph.edges, 
-        avgOrigDegree: avgOrigDegree, 
         origDegreeMap: origDegreeMap,
         degreeWhenDeletedMap: None, 
         terminalClique: None, 
@@ -192,7 +173,6 @@ pub fn URO(graph : Graph) -> Ordering{
     order.shuffle(&mut rng);
     
     let adjacencySetList : Vec<HashSet<u32>> = create_adj_set(&graph.adjacencyList); 
-    let avgOrigDegree : f64 = get_avg_orig_degree(&graph.inDegreeList);
     let origDegreeMap : HashMap<u32,u32> = create_orig_degree_map(&graph.inDegreeList); 
 
     Ordering
@@ -201,7 +181,6 @@ pub fn URO(graph : Graph) -> Ordering{
         adjacencySetList: adjacencySetList,
         vertices: graph.vertices, 
         edges: graph.edges, 
-        avgOrigDegree: avgOrigDegree, 
         origDegreeMap: origDegreeMap, 
         degreeWhenDeletedMap: None, 
         terminalClique: None, 
@@ -218,7 +197,6 @@ pub fn BFSR(graph : Graph) -> Ordering{
     let mut visited : HashSet<u32> = HashSet::new();
     let mut queue : VecDeque<u32> = VecDeque::new(); 
     let adjacencySetList : Vec<HashSet<u32>> = create_adj_set(&AL); 
-    let avgOrigDegree : f64 = get_avg_orig_degree(&IDL);
     let origDegreeMap : HashMap<u32,u32> = create_orig_degree_map(&IDL); 
     //must loop until all vertices have been visited, 
     //because there can be any number of islands 
@@ -265,7 +243,6 @@ pub fn BFSR(graph : Graph) -> Ordering{
         adjacencySetList: adjacencySetList,
         vertices: graph.vertices, 
         edges: graph.edges, 
-        avgOrigDegree: avgOrigDegree, 
         origDegreeMap: origDegreeMap, 
         degreeWhenDeletedMap: None, 
         terminalClique: None, 
@@ -282,7 +259,6 @@ pub fn BFSS(graph : Graph) -> Ordering{
     let mut visited : HashSet<u32> = HashSet::new();
     let mut queue : VecDeque<u32> = VecDeque::new(); 
     let adjacencySetList : Vec<HashSet<u32>> = create_adj_set(&AL); 
-    let avgOrigDegree : f64 = get_avg_orig_degree(&IDL);
     let origDegreeMap : HashMap<u32,u32> = create_orig_degree_map(&IDL); 
     //must loop until all vertices have been visited, 
     //because there can be any number of islands 
@@ -337,7 +313,6 @@ pub fn BFSS(graph : Graph) -> Ordering{
         adjacencySetList: adjacencySetList,
         vertices: graph.vertices, 
         edges: graph.edges, 
-        avgOrigDegree: avgOrigDegree, 
         origDegreeMap: origDegreeMap, 
         degreeWhenDeletedMap: None,
         terminalClique: None,  
@@ -354,7 +329,6 @@ pub fn BFSL(graph : Graph) -> Ordering{
     let mut visited : HashSet<u32> = HashSet::new();
     let mut queue : VecDeque<u32> = VecDeque::new(); 
     let adjacencySetList : Vec<HashSet<u32>> = create_adj_set(&AL); 
-    let avgOrigDegree : f64 = get_avg_orig_degree(&IDL);
     let origDegreeMap : HashMap<u32,u32> = create_orig_degree_map(&IDL); 
     //must loop until all vertices have been visited, 
     //because there can be any number of islands 
@@ -409,7 +383,6 @@ pub fn BFSL(graph : Graph) -> Ordering{
         adjacencySetList: adjacencySetList,
         vertices: graph.vertices, 
         edges: graph.edges, 
-        avgOrigDegree: avgOrigDegree, 
         origDegreeMap: origDegreeMap,
         degreeWhenDeletedMap: None,
         terminalClique: None,  
@@ -457,7 +430,7 @@ pub fn coloring(&self) {
         }
     }
     println!("\nNeeded {} colors to color a graph of {} Vertices and {} Edges.",requiredColors + 1, self.vertices, self.edges); 
-    println!("Average Original Degree: {}", self.avgOrigDegree); 
+    println!("Average Original Degree: {}", (self.edges*2) as f64 /self.vertices as f64); 
     if !self.terminalClique.is_none(){
         println!("Terminal Clique: {}", self.terminalClique.unwrap());
     }

@@ -2,6 +2,13 @@ use std::{io,fs};
 use graph_coloring::{input::*,graph::*,ordering::*}; 
 
 fn main() {
+    // uncomment this out for the SLVO walkthrough 
+    // let graph : Graph = Graph::new_from_file("../sample-SLVO-graph.txt"); 
+    // graph.display(); 
+    // let ordering : Ordering = Ordering::SLVO(graph); 
+    // ordering.displayOrder(); 
+    // ordering.coloring(); 
+
     loop 
     {
         let (mut terminate, mut vertices, mut edges, mut graph, mut distribution, mut order) = 
@@ -36,7 +43,7 @@ fn main() {
             io::stdin().read_line(&mut edges).expect("failed to readline"); 
             e = edges.trim().parse::<u32>().unwrap();  
 
-            println!("Choose the Random distribution, 1 for Uniform, 2 for Skewed, 3 for Cosine:");
+            println!("Choose the Random distribution, 1 for Uniform, 2 for Skewed, 3 for Sine:");
             io::stdin().read_line(&mut distribution).expect("failed to readline"); 
             d = distribution.trim().parse::<u32>().unwrap();  
         }
@@ -71,6 +78,5 @@ fn main() {
         ordering.displayOrder(); 
 
         ordering.coloring(); 
-
     }
 }

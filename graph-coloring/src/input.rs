@@ -23,7 +23,7 @@ pub enum GraphKind{
 pub enum DistKind{
     uniform, 
     skewed, 
-    cosine, 
+    sine, 
 }
 
 impl Input{
@@ -46,8 +46,8 @@ impl Input{
                         match dist {
                             1 => DistKind::uniform, 
                             2 => DistKind::skewed, 
-                            3 => DistKind::cosine, 
-                            _ => panic!("Choose 1 for Uniform, 2 for Skewed, and 3 for Cosine"), 
+                            3 => DistKind::sine, 
+                            _ => panic!("Choose 1 for Uniform, 2 for Skewed, and 3 for sine"), 
                         }
                     ) 
                 },   
@@ -59,7 +59,7 @@ impl Input{
             GraphKind::cycle => None,
             GraphKind::random(DistKind::uniform) => Some(DistKind::uniform), 
             GraphKind::random(DistKind::skewed) => Some(DistKind::skewed), 
-            GraphKind::random(DistKind::cosine) => Some(DistKind::cosine), 
+            GraphKind::random(DistKind::sine) => Some(DistKind::sine), 
             _ => None, 
         };
 
