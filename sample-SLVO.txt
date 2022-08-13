@@ -1,0 +1,110 @@
+Welcome to the Rusty Graph Coloring Analysis Project! Press any key to continue, or 'q' to quit.
+a
+Choose the type of Graph, 1 for Complete, 2 for Cycle, or 3 for Random:
+3
+Choose the number of Vertices (1-10,000):
+5
+Choose the number of Edges (1-2,000,000):
+5
+Choose the Random distribution, 1 for Uniform, 2 for Skewed, 3 for Sine:
+1
+Adjacency List:
+
+0->2->4
+1->2->4
+2->0->1->4
+3
+4->0->1->2
+
+In-degree List:
+
+0->3
+1
+2->0->1
+3->2->4
+4
+
+Choose the type of Ordering: 
+        
+1 - Smallest Last Vertex Ordering 
+        
+2 - Smallest Original Degree Last 
+        
+3 - Uniform Random Ordering 
+        
+4 - Breadth First Search from a Random Vertice 
+        
+5 - Breadth First Search from the Smallest Vertice 
+        
+6 - Breadth First Search from the Largest Vertice
+1
+Removing vertex 0
+
+Adjacency List:
+
+0
+1->2->4
+2->1->4
+3
+4->1->2
+
+In-degree List:
+
+0->0->3
+1
+2->1->2->4
+3
+4
+
+Removing vertex 1
+
+Adjacency List:
+
+0
+1
+2->4
+3
+4->2
+
+In-degree List:
+
+0->0->1->3
+1->2->4
+2
+3
+4
+
+Removing vertex 2
+
+Adjacency List:
+
+0
+1
+2
+3
+4
+
+In-degree List:
+
+0->0->1->2->3->4
+1
+2
+3
+4
+
+Order: 
+
+4->2->1->0->3
+
+Vertice: 4, Color: 0 Original Degree: 3 Degree When Deleted: 0
+Vertice: 2, Color: 1 Original Degree: 3 Degree When Deleted: 1
+Vertice: 1, Color: 2 Original Degree: 2 Degree When Deleted: 2
+Vertice: 0, Color: 2 Original Degree: 2 Degree When Deleted: 2
+Vertice: 3, Color: 0 Original Degree: 0 Degree When Deleted: 0
+
+Needed 3 colors to color a graph of 5 Vertices and 5 Edges.
+Average Original Degree: 2
+Terminal Clique: 3
+Welcome to the Rusty Graph Coloring Analysis Project! Press any key to continue, or 'q' to quit.
+q
+Thanks for using the Rusty Graph Coloring Analysis Project! Have a nice day!

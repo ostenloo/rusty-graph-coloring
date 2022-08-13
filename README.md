@@ -42,8 +42,8 @@ Running Benchmarks will require Rust to be installed (I was having issues and wa
 | cargo run               | graph   | dirname   | random   | uniform | dense   |
 | cargo run               | graph   | dirname   | random   | skewed  | sparse  |
 | cargo run               | graph   | dirname   | random   | skewed  | dense   |
-| cargo run               | graph   | dirname   | random   | cosine  | sparse  |
-| cargo run               | graph   | dirname   | random   | cosine  | dense   |
+| cargo run               | graph   | dirname   | random   | sine    | sparse  |
+| cargo run               | graph   | dirname   | random   | sine    | dense   |
 | cargo run               | order   | dirname   | SLVO     |         |         |
 | cargo run               | order   | dirname   | SODL     |         |         |
 | cargo run               | order   | dirname   | URO      |         |         |
