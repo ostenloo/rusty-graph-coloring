@@ -44,8 +44,8 @@ fn main() {
                         "skewed" => {
                             generateRandom(directory, DistKind::skewed, density);
                         },
-                        "cosine" => {
-                            generateRandom(directory, DistKind::cosine, density);
+                        "sine" => {
+                            generateRandom(directory, DistKind::sine, density);
                         },
                         _ => panic!("Not a distribution type."), 
                     }
