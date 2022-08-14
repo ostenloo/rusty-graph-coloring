@@ -32,7 +32,7 @@ A CLI will appear where you can control the settings for the Graphs you create.
 
 # Benchmarks
 
-Running Benchmarks will require Rust to be installed (I was having issues and was too lazy to figure out a way to make it work, though it is possible). Benchmarks are controlled through command line arguments. The commands are 
+Running Benchmarks will require Rust to be installed. Benchmarks are controlled through command line arguments. The commands are 
 
 | Base Command            | Command | Directory | Arg[3]   | Arg[4]  | Arg[5]  |
 |-------------------------|---------|-----------|----------|---------|---------|
@@ -42,14 +42,18 @@ Running Benchmarks will require Rust to be installed (I was having issues and wa
 | cargo run               | graph   | dirname   | random   | uniform | dense   |
 | cargo run               | graph   | dirname   | random   | skewed  | sparse  |
 | cargo run               | graph   | dirname   | random   | skewed  | dense   |
-| cargo run               | graph   | dirname   | random   | sine    | sparse  |
-| cargo run               | graph   | dirname   | random   | sine    | dense   |
+| cargo run               | graph   | dirname   | random   | normal    | sparse  |
+| cargo run               | graph   | dirname   | random   | normal    | dense   |
 | cargo run               | order   | dirname   | SLVO     |         |         |
 | cargo run               | order   | dirname   | SODL     |         |         |
 | cargo run               | order   | dirname   | URO      |         |         |
 | cargo run               | order   | dirname   | BFSR     |         |         |
 | cargo run               | order   | dirname   | BFSS     |         |         |
 | cargo run               | order   | dirname   | BFSL     |         |         |
+| cargo run               | hist    | dirname   | uniform  |         |         |
+| cargo run               | hist    | dirname   | skewed   |         |         |
+| cargo run               | hist    | dirname   | normal     |         |         |
+
 
     SLVO - Smallest Last Vertex Ordering 
     SODL - Smallest Original Degree Last 
@@ -69,6 +73,18 @@ For example, a sample command sequence might be
     cargo run graph dir1 complete
     
     cargo run order SLVO dir1 
+
+## Histograms 
+
+You can also run a `hist` command to generate histograms. This won't actually generate the plot, just the numbers. You must specify a dirname for the output data to be written to. 
+
+    cd benchmarks 
+
+    cargo run hist dir2 uniform 
+
+    cargo run hist dir2 skewed 
+
+    cargo run hist dir2 normal
 
 ## Generated Benchmarks 
 

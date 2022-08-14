@@ -1,6 +1,6 @@
 use std::{io::*,env,fs,cmp};
 use graph_coloring::{graph::*,input::*,ordering::*}; 
-use std::time::{Duration,Instant}; 
+use std::time::Instant; 
 
 fn main() {
     let args : Vec<String> = env::args().collect(); 
@@ -44,8 +44,8 @@ fn main() {
                         "skewed" => {
                             generateRandom(directory, DistKind::skewed, density);
                         },
-                        "sine" => {
-                            generateRandom(directory, DistKind::sine, density);
+                        "normal" => {
+                            generateRandom(directory, DistKind::normal, density);
                         },
                         _ => panic!("Not a distribution type."), 
                     }
@@ -60,6 +60,13 @@ fn main() {
             let order = &args[3]; 
             vertexOrdering(directory, order); 
         },
+        "hist" => {
+            if args.len() != 4{
+                panic!("Wrong number of arguments found."); 
+            }
+            let dist = &args[3]; 
+            generateHistograms(directory, dist); 
+        }
         _ => panic!("Not a valid argument."), 
     }
 
@@ -125,7 +132,7 @@ pub fn generateRandom(dir : &str, dist : DistKind, density : &str)
     }
 }
 
-// //
+//vertexOrdering
 pub fn vertexOrdering(dir : &str, order : &str ) 
 {
     let mut orderingRuntime : Vec<u128> = Vec::new(); 
@@ -156,5 +163,34 @@ pub fn vertexOrdering(dir : &str, order : &str )
             coloringRuntime.push(end.as_nanos()); 
             write!(coloringRuntimeFile, "{},{}\n", &filepath[dir.len()+12..], end.as_nanos()); 
         }
+    }
+}
+
+pub fn generateHistograms(dir: &str, dist: &str)
+{
+    let mut pointFileX = std::fs::File::create("../tmp/".to_owned() + dir + "/" + dist + "PointFileX").expect("create failed"); 
+    let mut pointFileY = std::fs::File::create("../tmp/".to_owned() + dir + "/" + dist + "PointFileY").expect("create failed");
+    let mut distr = match dist { 
+        "uniform" => DistKind::uniform, 
+        "skewed" => DistKind::skewed, 
+        "normal" => DistKind::normal, 
+        _ => panic!("Not a distribution."), 
+    }; 
+    let input : Input = Input{
+        vertices: 10, 
+        edges: 10,  
+        graph: GraphKind::random(distr.clone()), 
+        dist: Some(distr), 
+    };
+    let mut distHist : Vec<u32> = vec![0; input.max_edges() as usize]; 
+    for i in 0..5000{
+        let distVec : Vec<u32> = Graph::random_distr(input.clone()); 
+        for (ji, j) in distVec.iter().enumerate(){
+            distHist[ji as usize] += *j;
+        }
+    }
+    for (ii, i) in distHist.iter().enumerate(){
+        write!(pointFileX, "{}\n", ii); 
+        write!(pointFileY, "{}\n", *i); 
     }
 }

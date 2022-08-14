@@ -6,7 +6,7 @@ Choose the number of Vertices (1-10,000):
 5
 Choose the number of Edges (1-2,000,000):
 5
-Choose the Random distribution, 1 for Uniform, 2 for Skewed, 3 for Sine:
+Choose the Random distribution, 1 for Uniform, 2 for Skewed, 3 for Normal:
 1
 Adjacency List:
 

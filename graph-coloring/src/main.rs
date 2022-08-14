@@ -43,7 +43,7 @@ fn main() {
             io::stdin().read_line(&mut edges).expect("failed to readline"); 
             e = edges.trim().parse::<u32>().unwrap();  
 
-            println!("Choose the Random distribution, 1 for Uniform, 2 for Skewed, 3 for Sine:");
+            println!("Choose the Random distribution, 1 for Uniform, 2 for Skewed, 3 for Normal:");
             io::stdin().read_line(&mut distribution).expect("failed to readline"); 
             d = distribution.trim().parse::<u32>().unwrap();  
         }
