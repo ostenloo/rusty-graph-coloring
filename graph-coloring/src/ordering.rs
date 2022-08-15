@@ -113,15 +113,15 @@ pub fn SLVO(graph : Graph) -> Ordering{
                 }
                 v -= 1;
 
-                println!("Removing vertex {}\n", *j); 
+                // println!("Removing vertex {}\n", *j); 
 
-                let g = Graph{ 
-                    adjacencyList : AL_.clone(),
-                    inDegreeList: IDL_.clone(), 
-                    vertices : v, 
-                    edges : 1, 
-                }; 
-                g.display();
+                // let g = Graph{ 
+                //     adjacencyList : AL_.clone(),
+                //     inDegreeList: IDL_.clone(), 
+                //     vertices : v, 
+                //     edges : 1, 
+                // }; 
+                // g.display();
                 break;  
             }
             break; 
@@ -205,7 +205,7 @@ pub fn BFSR(graph : Graph) -> Ordering{
             break; 
         }
         let mut start : u32 = rng.gen_range(0..remaining.len() as u32); 
-        println!("{}", start); 
+        // println!("{}", start); 
         queue.push_back(start); 
         visited.insert(start); 
         remaining.retain(|x| *x != start);
@@ -394,7 +394,8 @@ pub fn BFSL(graph : Graph) -> Ordering{
 //adjacencyColorSetList-- list of sets of all colors adjacent to a vertice for each vertice
 pub fn coloring(&self) {
     let mut file = std::fs::File::create("../tmp/part2output").expect("create failed");
-
+    let mut file1 = std::fs::File::create(format!("../tmp/orderWhenDeletedVsOrderColored{}", self.vertices)).expect("create failed"); 
+    // let mut file2 = std::fs::File::create("../tmp/colorsNeeded").expect("create failed"); 
     let mut adjacencyColorSetList : Vec<HashSet<u32>> = vec![HashSet::<u32>::new() ; self.order.len()]; 
 
     let mut requiredColors : u32 = 0; 
@@ -418,22 +419,27 @@ pub fn coloring(&self) {
             adjacencyColorSetList[*j as usize].insert(smallestAvailableColor); 
         }
         requiredColors = cmp::max(smallestAvailableColor, requiredColors); 
-        write!(file, "{},{}\n", *i,smallestAvailableColor); 
+        // write!(file, "{},{}\n", *i,smallestAvailableColor); 
 
         // comment out when you want to run benchmarks
-        print!("Vertice: {}, Color: {} Original Degree: {}",*i,smallestAvailableColor,self.origDegreeMap.get(i).unwrap()); 
-        if !self.degreeWhenDeletedMap.is_none(){
-            println!(" Degree When Deleted: {}", self.degreeWhenDeletedMap.as_ref().unwrap().get(i).unwrap()); 
-        }
-        else{
-            println!(""); 
-        }
+        // print!("Vertice: {}, Color: {} Original Degree: {}",*i,smallestAvailableColor,self.origDegreeMap.get(i).unwrap()); 
+        // if !self.degreeWhenDeletedMap.is_none(){
+        //     println!(" Degree When Deleted: {}", self.degreeWhenDeletedMap.as_ref().unwrap().get(i).unwrap()); 
+        //     write!(file1, "{}\n", self.degreeWhenDeletedMap.as_ref().unwrap().get(i).unwrap()); 
+        // }
+        // else{
+        //     println!(""); 
+        // }
     }
-    println!("\nNeeded {} colors to color a graph of {} Vertices and {} Edges.",requiredColors + 1, self.vertices, self.edges); 
-    println!("Average Original Degree: {}", (self.edges*2) as f64 /self.vertices as f64); 
-    if !self.terminalClique.is_none(){
-        println!("Terminal Clique: {}", self.terminalClique.unwrap());
-    }
+
+    print!("{},{}\n", self.vertices, requiredColors + 1); 
+    // write!(file2, "{}\n", requiredColors + 1); 
+    // println!("\nNeeded {} colors to color a graph of {} Vertices and {} Edges.",requiredColors + 1, self.vertices, self.edges); 
+    // println!("Average Original Degree: {}", (self.edges*2) as f64 /self.vertices as f64); 
+    // if !self.terminalClique.is_none(){
+    //     println!("Terminal Clique: {}", self.terminalClique.unwrap());
+    //     write!(file1, "{}\n", self.terminalClique.unwrap()); 
+    // }
 }
 
 pub fn displayOrder(&self) {

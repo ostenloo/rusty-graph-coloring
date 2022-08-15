@@ -106,6 +106,7 @@ pub fn generateGraph(dir : &str, graph : GraphKind)
 pub fn generateRandom(dir : &str, dist : DistKind, density : &str)  
 {
     let sizes : Vec<u32> = vec![100,200,300,400,500,600,700,800,900,1000]; 
+    // let sizes : Vec<u32> = vec![10,20,30,40,50,60,70,80,90,100]; 
     let mut runtime : Vec<u128> = Vec::new(); 
     fs::create_dir("../tmp/".to_owned() + dir).expect("create failed");
     for v in sizes.iter(){
@@ -161,6 +162,7 @@ pub fn vertexOrdering(dir : &str, order : &str )
             ordering.coloring(); 
             end = start.elapsed(); 
             coloringRuntime.push(end.as_nanos()); 
+            // print!("{}\n", end.as_nanos()); 
             write!(coloringRuntimeFile, "{},{}\n", &filepath[dir.len()+12..], end.as_nanos()); 
         }
     }
